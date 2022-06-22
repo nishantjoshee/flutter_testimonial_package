@@ -1,7 +1,3 @@
 library flutter_testimonial_package;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:flutter_testimonial_package/testimonials/testimonial_section_eight/testimonial_section_eight.dart';
