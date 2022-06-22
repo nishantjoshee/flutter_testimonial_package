@@ -13,6 +13,14 @@ class TestimonialSeven extends StatefulWidget {
     this.imageContainerHeight = 100,
     this.imageContainerWidth = 100,
     this.bottomTextWidth = 240,
+    this.indicatorPositionBottom = 0,
+    this.indicatorPositionLeft = 140,
+    this.indicatorPositionRight = 0,
+    this.indicatorPositionTop = 275,
+    this.outerConatinerMarginBottom = 5,
+    this.outerConatinerMarginLeft = 5,
+    this.outerConatinerMarginRight = 5,
+    this.outerConatinerMarginTop = 0,
   }) : super(key: key);
   bool isSlider;
   double carouselHeight;
@@ -21,6 +29,15 @@ class TestimonialSeven extends StatefulWidget {
   double imageContainerHeight;
   double imageContainerWidth;
   double bottomTextWidth;
+
+  double indicatorPositionBottom;
+  double indicatorPositionTop;
+  double indicatorPositionLeft;
+  double indicatorPositionRight;
+  double outerConatinerMarginRight;
+  double outerConatinerMarginLeft;
+  double outerConatinerMarginTop;
+  double outerConatinerMarginBottom;
 
   @override
   State<TestimonialSeven> createState() => _TestimonialSevenState();
@@ -34,6 +51,12 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
   @override
   Widget build(BuildContext context) {
     Widget sectionWidget = Container(
+      margin: EdgeInsets.only(
+        right: widget.outerConatinerMarginRight,
+        bottom: widget.outerConatinerMarginBottom,
+        left: widget.outerConatinerMarginLeft,
+        top: widget.outerConatinerMarginTop,
+      ),
       color: Colors.white,
       height: widget.outerContainerHeight,
       width: widget.outerContainerWidth,
@@ -134,6 +157,9 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
             padding: const EdgeInsets.only(top: 10),
             child: Stack(
               children: [
+                Container(
+                  height: widget.carouselHeight,
+                ),
                 CarouselSlider(
                   items: items,
                   options: CarouselOptions(
@@ -148,8 +174,10 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                   ),
                 ),
                 Positioned(
-                  bottom: 10,
-                  left: 130,
+                  bottom: widget.indicatorPositionBottom,
+                  left: widget.indicatorPositionLeft,
+                  right: widget.indicatorPositionRight,
+                  top: widget.indicatorPositionTop,
                   child: AnimatedSmoothIndicator(
                     effect: SlideEffect(
                       dotWidth: 8,
