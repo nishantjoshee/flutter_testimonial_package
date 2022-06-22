@@ -8,9 +8,19 @@ class TestimonialSeven extends StatefulWidget {
     Key? key,
     this.isSlider = true,
     this.carouselHeight = 320,
+    this.outerContainerHeight = 320,
+    this.outerContainerWidth = 280,
+    this.imageContainerHeight = 100,
+    this.imageContainerWidth = 100,
+    this.bottomTextWidth = 240,
   }) : super(key: key);
   bool isSlider;
   double carouselHeight;
+  double outerContainerHeight;
+  double outerContainerWidth;
+  double imageContainerHeight;
+  double imageContainerWidth;
+  double bottomTextWidth;
 
   @override
   State<TestimonialSeven> createState() => _TestimonialSevenState();
@@ -23,90 +33,98 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
 
   @override
   Widget build(BuildContext context) {
-    Widget sectionWidget = Stack(
-      children: [
-        Container(
-          height: 320,
-          width: 280,
-          color: Colors.white,
-        ),
-        Positioned(
-          left: 20,
-          top: 20,
-          child: Container(
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1.0,
-                color: Colors.red,
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          left: 8,
-          top: 32,
-          child: Container(
-            color: Colors.blue,
-            height: 100,
-            width: 100,
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              imageUrl:
-                  'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
-              errorWidget: (BuildContext context, string, dynamic) {
-                return const Icon(Icons.error);
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: 135,
-          top: 45,
-          child: Column(
+    Widget sectionWidget = Container(
+      color: Colors.white,
+      height: widget.outerContainerHeight,
+      width: widget.outerContainerWidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
             children: [
-              Row(
+              Stack(
                 children: [
-                  ...List.generate(
-                    5,
-                    (index) => Icon(
-                      Icons.star,
-                      size: iconSize,
-                      color: const Color(0xffF0416D),
+                  SizedBox(
+                    height: widget.imageContainerHeight + 50,
+                    width: widget.imageContainerWidth + 50,
+                  ),
+                  Positioned(
+                    left: 20,
+                    top: 20,
+                    child: Container(
+                      height: widget.imageContainerHeight,
+                      width: widget.imageContainerWidth,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1.0,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 8,
+                    top: 32,
+                    child: Container(
+                      color: Colors.blue,
+                      height: widget.imageContainerHeight,
+                      width: widget.imageContainerWidth,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl:
+                            'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
+                        errorWidget: (BuildContext context, string, dynamic) {
+                          return const Icon(Icons.error);
+                        },
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 5,
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      ...List.generate(
+                        5,
+                        (index) => Icon(
+                          Icons.star,
+                          size: iconSize,
+                          color: const Color(0xffF0416D),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
+                    'Delia Riley',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text('Finance Manager'),
+                ],
               ),
-              const Text(
-                'Delia Riley',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text('Finance Manager'),
             ],
           ),
-        ),
-        const Positioned(
-          left: 15,
-          top: 190,
-          child: SizedBox(
-            width: 220,
-            child: Text(
-              "I loved the customer service you guys provided me. That was very nice and patient with questions I had. I"
-              " would really like definitely come back here. Thank you for yours service",
+          Padding(
+            padding: const EdgeInsets.only(bottom: 40),
+            child: SizedBox(
+              width: widget.bottomTextWidth,
+              child: const Text(
+                "I loved the customer service you guys provided me. That was very nice and patient with questions I had. I"
+                " would really like definitely come back here. Thank you for yours service",
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
 
     List<Widget> items = [sectionWidget, sectionWidget, sectionWidget];
