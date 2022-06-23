@@ -1,11 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_testimonial_package/testimonials/testimonial_section_seven/section_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TestimonialSeven extends StatefulWidget {
   TestimonialSeven({
     Key? key,
+    required this.data,
     this.isSlider = true,
     this.carouselHeight = 320,
     this.outerContainerHeight = 320,
@@ -47,6 +48,7 @@ class TestimonialSeven extends StatefulWidget {
   IconData iconData;
   String imagePath;
   bool isAssetImage;
+  List data;
 
   @override
   State<TestimonialSeven> createState() => _TestimonialSevenState();
@@ -57,109 +59,29 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
 
   @override
   Widget build(BuildContext context) {
-    Widget sectionWidget = Container(
-      margin: EdgeInsets.only(
-        right: widget.outerConatinerMarginRight,
-        bottom: widget.outerConatinerMarginBottom,
-        left: widget.outerConatinerMarginLeft,
-        top: widget.outerConatinerMarginTop,
-      ),
-      color: Colors.white,
-      height: widget.outerContainerHeight,
-      width: widget.outerContainerWidth,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    height: widget.imageContainerHeight + 50,
-                    width: widget.imageContainerWidth + 50,
-                  ),
-                  Positioned(
-                    left: 20,
-                    top: 20,
-                    child: Container(
-                      height: widget.imageContainerHeight,
-                      width: widget.imageContainerWidth,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1.0,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 8,
-                    top: 32,
-                    child: Container(
-                      color: Colors.blue,
-                      height: widget.imageContainerHeight,
-                      width: widget.imageContainerWidth,
-                      child: widget.isAssetImage
-                          ? Image.asset(widget.imagePath)
-                          : CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: widget.imagePath,
-                              errorWidget:
-                                  (BuildContext context, string, dynamic) {
-                                return const Icon(Icons.error);
-                              },
-                            ),
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      ...List.generate(
-                        5,
-                        (index) => Icon(
-                          widget.iconData,
-                          size: widget.iconSize,
-                          color: const Color(0xffF0416D),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    'Delia Riley',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text('Finance Manager'),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: SizedBox(
-              width: widget.bottomTextWidth,
-              child: const Text(
-                "I loved the customer service you guys provided me. That was very nice and patient with questions I had. I"
-                " would really like definitely come back here. Thank you for yours service",
-              ),
-            ),
-          ),
-        ],
+    List items = [
+      ...widget.data,
+    ];
+    var widgets = items.map(
+      (e) => SectionWidget(
+        title: e.title,
+        subtitle: e.subtitle,
+        description: e.description,
+        iconData: widget.iconData,
+        bottomTextWidth: widget.bottomTextWidth,
+        iconSize: widget.iconSize,
+        imageContainerHeight: widget.imageContainerHeight,
+        imageContainerWidth: widget.imageContainerWidth,
+        imagePath: widget.imagePath,
+        isAssetImage: widget.isAssetImage,
+        outerConatinerMarginBottom: widget.outerConatinerMarginBottom,
+        outerConatinerMarginLeft: widget.outerConatinerMarginLeft,
+        outerConatinerMarginRight: widget.outerConatinerMarginRight,
+        outerConatinerMarginTop: widget.outerConatinerMarginTop,
+        outerContainerHeight: widget.outerContainerHeight,
+        outerContainerWidth: widget.outerContainerWidth,
       ),
     );
-
-    List<Widget> items = [sectionWidget, sectionWidget, sectionWidget];
 
     return widget.isSlider
         ? Padding(
