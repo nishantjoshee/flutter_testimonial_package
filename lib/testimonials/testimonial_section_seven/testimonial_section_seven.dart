@@ -21,6 +21,11 @@ class TestimonialSeven extends StatefulWidget {
     this.outerConatinerMarginLeft = 5,
     this.outerConatinerMarginRight = 5,
     this.outerConatinerMarginTop = 0,
+    this.iconSize = 18.0,
+    this.iconData = Icons.star,
+    this.imagePath =
+        'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
+    this.isAssetImage = false,
   }) : super(key: key);
   bool isSlider;
   double carouselHeight;
@@ -38,14 +43,16 @@ class TestimonialSeven extends StatefulWidget {
   double outerConatinerMarginLeft;
   double outerConatinerMarginTop;
   double outerConatinerMarginBottom;
+  double iconSize;
+  IconData iconData;
+  String imagePath;
+  bool isAssetImage;
 
   @override
   State<TestimonialSeven> createState() => _TestimonialSevenState();
 }
 
 class _TestimonialSevenState extends State<TestimonialSeven> {
-  var iconSize = 18.0;
-
   int activeIndex = 0;
 
   @override
@@ -92,14 +99,16 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                       color: Colors.blue,
                       height: widget.imageContainerHeight,
                       width: widget.imageContainerWidth,
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl:
-                            'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
-                        errorWidget: (BuildContext context, string, dynamic) {
-                          return const Icon(Icons.error);
-                        },
-                      ),
+                      child: widget.isAssetImage
+                          ? Image.asset(widget.imagePath)
+                          : CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: widget.imagePath,
+                              errorWidget:
+                                  (BuildContext context, string, dynamic) {
+                                return const Icon(Icons.error);
+                              },
+                            ),
                     ),
                   ),
                 ],
@@ -111,8 +120,8 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                       ...List.generate(
                         5,
                         (index) => Icon(
-                          Icons.star,
-                          size: iconSize,
+                          widget.iconData,
+                          size: widget.iconSize,
                           color: const Color(0xffF0416D),
                         ),
                       ),
