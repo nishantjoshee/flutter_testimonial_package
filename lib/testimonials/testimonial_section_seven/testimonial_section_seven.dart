@@ -201,7 +201,7 @@ class TestimonialSeven extends StatefulWidget {
 }
 
 class _TestimonialSevenState extends State<TestimonialSeven> {
-  var iconSize = 18.0;
+  final controller = CarouselController();
 
   int activeIndex = 0;
 
@@ -267,6 +267,38 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                     count: items.length,
                   ),
                 ),
+                Positioned(
+                  top: 140,
+                  left: 5,
+                  child: InkWell(
+                    onTap: () {
+                      controller.previousPage();
+                    },
+                    child: const CircleAvatar(
+                      radius: 15,
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 140,
+                  right: 5,
+                  child: InkWell(
+                    onTap: () {
+                      controller.nextPage();
+                    },
+                    child: const CircleAvatar(
+                      radius: 15,
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           )
