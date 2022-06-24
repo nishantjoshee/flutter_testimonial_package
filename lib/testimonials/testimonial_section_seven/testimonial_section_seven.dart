@@ -166,12 +166,13 @@ class TestimonialSeven extends StatefulWidget {
   }) : super(key: key);
   bool isSlider;
   final List<dynamic> data;
-  //Data(
-  //String title,
-  //String subtitle,
-  //IconData iconData,
-  //String image,
-  //double iconSize,
+  //Define compulsory
+  //<Class Name>(
+  //String? title,
+  //String? subtitle,
+  //IconData? iconData,
+  //String? image,
+  //double? iconSize,
   //)
   IconData iconData;
 
