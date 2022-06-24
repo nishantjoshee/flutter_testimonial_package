@@ -257,6 +257,9 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                   right: 0,
                   top: 275,
                   child: AnimatedSmoothIndicator(
+                    onDotClicked: (index) {
+                      controller.animateToPage(index);
+                    },
                     effect: SlideEffect(
                       dotWidth: 8,
                       dotHeight: 8,
