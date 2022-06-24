@@ -166,6 +166,20 @@ class TestimonialSeven extends StatefulWidget {
     this.imagePath =
         'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
     this.isAssetImage = false,
+    this.navWidgetLeft = const CircleAvatar(
+      radius: 15,
+      child: Icon(
+        Icons.arrow_back_ios,
+        size: 18,
+      ),
+    ),
+    this.navWidgetRight = const CircleAvatar(
+      radius: 15,
+      child: Icon(
+        Icons.arrow_forward_ios,
+        size: 18,
+      ),
+    ),
   }) : super(key: key);
   bool isSlider;
   final List<dynamic> data;
@@ -198,7 +212,8 @@ class TestimonialSeven extends StatefulWidget {
   double iconSize;
   double dotHeight;
   double dotWidth;
-
+  Widget navWidgetLeft;
+  Widget navWidgetRight;
   String imagePath;
   bool isAssetImage;
 
@@ -236,81 +251,66 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
       ),
     );
     return widget.isSlider
-        ? Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Stack(
-              children: [
-                Container(
-                  height: widget.outerContainerHeight,
-                  color: widget.outerContainerColor,
+        ? Stack(
+            children: [
+              Container(
+                height: widget.outerContainerHeight,
+                color: widget.outerContainerColor,
+              ),
+              CarouselSlider(
+                items: widgets.toList(),
+                options: CarouselOptions(
+                  enableInfiniteScroll: false,
+                  viewportFraction: 1,
+                  height: widget.carouselHeight,
+                  autoPlay: false,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      activeIndex = index;
+                    });
+                  },
                 ),
-                CarouselSlider(
-                  items: widgets.toList(),
-                  options: CarouselOptions(
-                    enableInfiniteScroll: false,
-                    viewportFraction: 1,
-                    height: widget.carouselHeight,
-                    autoPlay: false,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        activeIndex = index;
-                      });
-                    },
+              ),
+              Positioned(
+                bottom: 0,
+                left: 140,
+                right: 0,
+                top: 275,
+                child: AnimatedSmoothIndicator(
+                  onDotClicked: (index) {
+                    controller.animateToPage(index);
+                  },
+                  effect: SlideEffect(
+                    dotWidth: widget.dotWidth,
+                    dotHeight: widget.dotHeight,
+                    dotColor: Colors.grey[400]!,
+                    activeDotColor: Colors.blueAccent,
                   ),
+                  activeIndex: activeIndex,
+                  count: items.length,
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 140,
-                  right: 0,
-                  top: 275,
-                  child: AnimatedSmoothIndicator(
-                    onDotClicked: (index) {
-                      controller.animateToPage(index);
-                    },
-                    effect: SlideEffect(
-                      dotWidth: widget.dotWidth,
-                      dotHeight: widget.dotHeight,
-                      dotColor: Colors.grey[400]!,
-                      activeDotColor: Colors.blueAccent,
-                    ),
-                    activeIndex: activeIndex,
-                    count: items.length,
-                  ),
+              ),
+              Positioned(
+                top: 140,
+                left: 5,
+                child: InkWell(
+                  onTap: () {
+                    controller.previousPage();
+                  },
+                  child: widget.navWidgetLeft,
                 ),
-                Positioned(
-                  top: 140,
-                  left: 5,
-                  child: InkWell(
-                    onTap: () {
-                      controller.previousPage();
-                    },
-                    child: const CircleAvatar(
-                      radius: 15,
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: 18,
-                      ),
-                    ),
-                  ),
+              ),
+              Positioned(
+                top: 140,
+                right: 5,
+                child: InkWell(
+                  onTap: () {
+                    controller.nextPage();
+                  },
+                  child: widget.navWidgetRight,
                 ),
-                Positioned(
-                  top: 140,
-                  right: 5,
-                  child: InkWell(
-                    onTap: () {
-                      controller.nextPage();
-                    },
-                    child: const CircleAvatar(
-                      radius: 15,
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           )
         : SingleChildScrollView(
             child: Column(
