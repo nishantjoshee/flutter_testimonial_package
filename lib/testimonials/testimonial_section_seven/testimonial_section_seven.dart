@@ -159,7 +159,10 @@ class TestimonialSeven extends StatefulWidget {
     this.outerConatinerMarginLeft = 5,
     this.outerConatinerMarginRight = 5,
     this.outerConatinerMarginTop = 0,
+    this.outerContainerColor = Colors.green,
     this.iconSize = 18.0,
+    this.dotHeight = 8,
+    this.dotWidth = 8,
     this.imagePath =
         'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
     this.isAssetImage = false,
@@ -179,6 +182,7 @@ class TestimonialSeven extends StatefulWidget {
   double carouselHeight;
   double outerContainerHeight;
   double outerContainerWidth;
+  Color outerContainerColor;
   double imageContainerHeight;
   double imageContainerWidth;
   double bottomTextWidth;
@@ -192,6 +196,8 @@ class TestimonialSeven extends StatefulWidget {
   double outerConatinerMarginTop;
   double outerConatinerMarginBottom;
   double iconSize;
+  double dotHeight;
+  double dotWidth;
 
   String imagePath;
   bool isAssetImage;
@@ -235,14 +241,15 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
             child: Stack(
               children: [
                 Container(
-                  height: 320,
+                  height: widget.outerContainerHeight,
+                  color: widget.outerContainerColor,
                 ),
                 CarouselSlider(
                   items: widgets.toList(),
                   options: CarouselOptions(
                     enableInfiniteScroll: false,
                     viewportFraction: 1,
-                    height: 320,
+                    height: widget.carouselHeight,
                     autoPlay: false,
                     onPageChanged: (index, reason) {
                       setState(() {
@@ -261,8 +268,8 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
                       controller.animateToPage(index);
                     },
                     effect: SlideEffect(
-                      dotWidth: 8,
-                      dotHeight: 8,
+                      dotWidth: widget.dotWidth,
+                      dotHeight: widget.dotHeight,
                       dotColor: Colors.grey[400]!,
                       activeDotColor: Colors.blueAccent,
                     ),
