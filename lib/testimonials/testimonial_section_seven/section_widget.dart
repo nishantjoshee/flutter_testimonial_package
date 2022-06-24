@@ -23,6 +23,14 @@ class SectionWidget extends StatefulWidget {
     this.imagePath =
         'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
     this.isAssetImage = false,
+    this.titleStyle = const TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+    ),
+    this.subtitleStyle = const TextStyle(
+      fontWeight: FontWeight.w200,
+      fontSize: 18,
+    ),
   }) : super(key: key);
   String title;
   String subtitle;
@@ -42,6 +50,8 @@ class SectionWidget extends StatefulWidget {
   IconData iconData;
   String imagePath;
   bool isAssetImage;
+  TextStyle titleStyle;
+  TextStyle subtitleStyle;
   @override
   State<SectionWidget> createState() => _SectionWidgetState();
 }
@@ -124,15 +134,15 @@ class _SectionWidgetState extends State<SectionWidget> {
                   ),
                   Text(
                     widget.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: widget.titleStyle,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(widget.subtitle),
+                  Text(
+                    widget.subtitle,
+                    style: widget.subtitleStyle,
+                  ),
                 ],
               ),
             ],
