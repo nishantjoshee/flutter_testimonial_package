@@ -32,14 +32,14 @@ class TestimonialSeven extends StatefulWidget {
         'https://tvcontract.com/wp-content/uploads/2018/01/Deiah_Riley_WFTS.jpg',
     this.isAssetImage = false,
     this.navWidgetLeft = const CircleAvatar(
-      radius: 15,
+      radius: 18,
       child: Icon(
         Icons.arrow_back_ios,
         size: 18,
       ),
     ),
     this.navWidgetRight = const CircleAvatar(
-      radius: 15,
+      radius: 18,
       child: Icon(
         Icons.arrow_forward_ios,
         size: 18,
@@ -157,7 +157,7 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
               ),
               Positioned(
                 top: 140,
-                left: 5,
+                left: 8,
                 child: InkWell(
                   onTap: () {
                     controller.previousPage();
@@ -167,7 +167,7 @@ class _TestimonialSevenState extends State<TestimonialSeven> {
               ),
               Positioned(
                 top: 140,
-                right: 5,
+                right: 8,
                 child: InkWell(
                   onTap: () {
                     controller.nextPage();
