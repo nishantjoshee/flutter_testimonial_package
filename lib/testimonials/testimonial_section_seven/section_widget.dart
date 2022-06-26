@@ -31,6 +31,7 @@ class SectionWidget extends StatefulWidget {
       fontWeight: FontWeight.w200,
       fontSize: 18,
     ),
+    this.iconCount = 5,
   }) : super(key: key);
   String title;
   String subtitle;
@@ -52,6 +53,7 @@ class SectionWidget extends StatefulWidget {
   bool isAssetImage;
   TextStyle titleStyle;
   TextStyle subtitleStyle;
+  int iconCount;
   @override
   State<SectionWidget> createState() => _SectionWidgetState();
 }
@@ -120,7 +122,7 @@ class _SectionWidgetState extends State<SectionWidget> {
                   Row(
                     children: [
                       ...List.generate(
-                        5,
+                        widget.iconCount,
                         (index) => Icon(
                           widget.iconData,
                           size: widget.iconSize,

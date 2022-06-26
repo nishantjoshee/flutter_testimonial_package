@@ -1,3 +1,5 @@
 library flutter_testimonial_package;
 
+export 'package:flutter_testimonial_package/testimonials/testimonial_section_seven/section_widget.dart';
+
 export 'package:flutter_testimonial_package/testimonials/testimonial_section_seven/testimonial_section_seven.dart';
